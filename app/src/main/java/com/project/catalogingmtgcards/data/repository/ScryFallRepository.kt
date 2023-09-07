@@ -2,6 +2,6 @@ package com.project.catalogingmtgcards.data.repository
 
 interface ScryFallRepository {
 
-    suspend fun getCard(colorCardName: String): ScryFallStateRepository
+    suspend fun getListCardByColor(colorCardName: String): ScryFallStateRepository
 
 }

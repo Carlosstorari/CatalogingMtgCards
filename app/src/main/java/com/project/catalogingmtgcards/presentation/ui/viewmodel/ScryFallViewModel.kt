@@ -6,15 +6,16 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.project.catalogingmtgcards.data.repository.ScryFallRepositoryImpl
+import com.project.catalogingmtgcards.data.response.CardResponse
 import com.project.catalogingmtgcards.domain.ScryFallStateUseCase
+import com.project.catalogingmtgcards.domain.model.Card
 import com.project.catalogingmtgcards.domain.useCase.ScryFallUseCase
 import kotlinx.coroutines.launch
 
 class ScryFallViewModel(
     application: Application,
     private val useCase: ScryFallUseCase
-    ): AndroidViewModel(application) {
+) : AndroidViewModel(application) {
     private val context = getApplication<Application>().applicationContext
 
     private val state: MutableLiveData<ScryFallViewModelState> = MutableLiveData()
@@ -22,7 +23,7 @@ class ScryFallViewModel(
 
     fun searchCard(){
         viewModelScope.launch {
-            val e = useCase.getListCard("color:red cmc=1")
+            val e = useCase.getListCardByColorUseCase("color:red cmc=1")
             Log.d("testeeee", e.toString())
             if (e is ScryFallStateUseCase.Success) {
                 for(item in e.card?.data!!) {

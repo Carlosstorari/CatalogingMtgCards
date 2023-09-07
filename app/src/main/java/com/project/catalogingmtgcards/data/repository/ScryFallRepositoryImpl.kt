@@ -16,7 +16,7 @@ sealed class ScryFallStateRepository {
 class ScryFallRepositoryImpl(
     private val service: ScryfallService
 ): ScryFallRepository {
-    override suspend fun getCard(colorCardName: String): ScryFallStateRepository {
+    override suspend fun getListCardByColor(colorCardName: String): ScryFallStateRepository {
        return withContext(Dispatchers.IO) {
             try {
                 callGetListCard(colorCardName)
